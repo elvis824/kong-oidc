@@ -29,6 +29,7 @@ function TestUtils:testOptions()
   local opts = utils.get_options({
     client_id = 1,
     client_secret = 2,
+    timeout = 3,
     discovery = "d",
     scope = "openid",
     response_type = "code",
@@ -37,12 +38,14 @@ function TestUtils:testOptions()
     introspection_endpoint_auth_method = "client_secret_basic",
     filters = "pattern1,pattern2,pattern3",
     logout_path = "/logout",
-    redirect_after_logout_uri = "/login"
+    redirect_after_logout_uri = "/login",
+    prompt = "login"
   }, {var = {request_uri = "/path"},
     req = {get_uri_args = function() return nil end}})
 
   lu.assertEquals(opts.client_id, 1)
   lu.assertEquals(opts.client_secret, 2)
+  lu.assertEquals(opts.timeout, 3)
   lu.assertEquals(opts.discovery, "d")
   lu.assertEquals(opts.scope, "openid")
   lu.assertEquals(opts.response_type, "code")
@@ -52,6 +55,7 @@ function TestUtils:testOptions()
   lu.assertEquals(opts.redirect_uri_path, "/path/")
   lu.assertEquals(opts.logout_path, "/logout")
   lu.assertEquals(opts.redirect_after_logout_uri, "/login")
+  lu.assertEquals(opts.prompt, "login")
 
   local expectedFilters = {
     "pattern1",
