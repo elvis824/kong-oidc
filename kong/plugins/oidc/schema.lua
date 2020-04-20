@@ -19,6 +19,7 @@ return {
     logout_path = { type = "string", required = false, default = '/logout' },
     redirect_after_logout_uri = { type = "string", required = false, default = '/' },
     prompt = { type = "string", required = false },
-    filters = { type = "string" }
+    filters = { type = "string" },
+    use_token_in_query_params = { type = "boolean", default = false }
   }
 }

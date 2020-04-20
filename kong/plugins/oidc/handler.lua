@@ -26,6 +26,10 @@ function OidcHandler:access(config)
 end
 
 function handle(oidcConfig)
+  if oidcConfig.use_token_in_query_params then
+    utils.addBearerAccessTokenFromQuery()
+  end
+
   local response
   if oidcConfig.introspection_endpoint then
     response = introspect(oidcConfig)

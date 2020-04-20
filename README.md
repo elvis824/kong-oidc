@@ -83,6 +83,7 @@ You also need to set the `KONG_PLUGINS` environment variable
 | `config.realm` | kong | false | Realm used in WWW-Authenticate response header |
 | `config.logout_path` | /logout | false | Absolute path used to logout from the OIDC RP |
 | `config.prompt` | | false | The `prompt` param in redirecting browser to OP endpoint. resty-openidc supports `none|login)` |
+| `config.use_token_in_query_params` | false | true | Whether to transform `access_token` in query params to `Authorization` header, if the latter is not defined |
 
 ### Enabling
 

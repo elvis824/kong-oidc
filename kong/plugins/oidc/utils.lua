@@ -59,6 +59,7 @@ function M.get_options(config, ngx)
     logout_path = config.logout_path,
     redirect_after_logout_uri = config.redirect_after_logout_uri,
     prompt = config.prompt,
+    use_token_in_query_params = config.use_token_in_query_params,
   }
 end
 
@@ -95,6 +96,20 @@ function M.has_bearer_access_token()
     end
   end
   return false
+end
+
+function M.addBearerAccessTokenFromQuery()
+  if M.has_bearer_access_token() then
+    return
+  end
+
+  local args = ngx.req.get_uri_args()
+
+  if args["access_token"] then
+    ngx.req.set_header("Authorization", "Bearer " .. args["access_token"])
+    args["access_token"] = nil
+    ngx.req.set_uri_args(args)    
+  end
 end
 
 return M
