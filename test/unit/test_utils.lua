@@ -39,7 +39,8 @@ function TestUtils:testOptions()
     filters = "pattern1,pattern2,pattern3",
     logout_path = "/logout",
     redirect_after_logout_uri = "/login",
-    prompt = "login"
+    prompt = "login",
+    use_token_in_query_params = true
   }, {var = {request_uri = "/path"},
     req = {get_uri_args = function() return nil end}})
 
@@ -56,6 +57,7 @@ function TestUtils:testOptions()
   lu.assertEquals(opts.logout_path, "/logout")
   lu.assertEquals(opts.redirect_after_logout_uri, "/login")
   lu.assertEquals(opts.prompt, "login")
+  lu.assertTrue(opts.use_token_in_query_params)
 
   local expectedFilters = {
     "pattern1",

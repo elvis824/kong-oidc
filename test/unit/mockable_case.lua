@@ -13,6 +13,7 @@ function MockableCase:setUp()
     header = {},
     var = {request_uri = "/"},
     req = {
+      set_uri_args = function(...) end,
       get_uri_args = function(...) end,
       set_header = function(...) end,
       get_headers = function(...) end
